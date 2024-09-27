@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <html lang="ja"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第1回</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <div class="graph"><h1>デザイン演習 第1回 </h1>
+    <h2 class="heading-15">Gitとは</h2><br>
+    
+     
+    Gitとは、分散型バージョン管理システムのこと。分散型バージョン管理システムとは、複数のリポジトリでファイルのバージョンを管理する仕組み。<br>
+    主にプログラムのファイルを管理するために使われている。<br>
+    (リポジトリとは、ファイルやファイルの変更履歴を保管している場所)<br>
+
+    <br>
+    ＜メリット＞
+    <ul><li>プログラムのバージョン管理や共有がスムーズになる</li>
+    <li>複数人で同じファイルを編集しても上書きされない</li>
+    <li>古いバージョンに簡単に戻すことができる</li>
+    <li>オフラインでも変更を管理できる</li></ul><br>
+    ＜デメリット＞
+    <ul><li>仕組みがやや複雑</li>
+    <li>仕組みの理解や操作頬法など覚えることが多い</li></ul><br>
+    <img src="./①/a.png" width="25%"><br>
+    <br>
+    <span style="background: linear-gradient(transparent 50%, #83d1f2 0%);">★GitHub・GitLabとは？★</span><br>
+    Gitを活用したWebサービスのこと。<span style="background: linear-gradient(transparent 50%, #ff99cc 0%);">Gitとは別物で、ファイルやファイルの変更履歴等をオンラインで保管してくれる。</span><br>
+    GitHubやGitLabを利用することで、リアルタイムでファイルやファイルの変更履歴等を見ることができるため、チーム作業をスムーズに進めることができる。<br>
+    <br>
+   【参考サイト】<br>
+    <a href="https://dxo.co.jp/blog/archives/10604"target="_blank">ドキドキしないためのGit解説～概念編～</a><br>
+    <a href="https://www.kagoya.jp/howto/it-glossary/develop/git/"target="_blank">【入門】Gitとは？できることや使い方、GitHubとの違いを分かりやすく解説</a>
+    
+    <p>
+   <h2 class="heading-15">Htmlとは</h2><br>
+    Htmlとは、Webページを作成するために作られた言語のこと。Webページ内の大元の構造た基本的な情報を構成する役割を担っている。<br>
+    Htmlによって作成されたWebページは、いつどこからアクセスしても毎回同じページが表示される。→静的サイト<br>
+    <br>
+    ■静的サイト■<br>
+    メリット…表示スピードが速い<br>
+    デメリット…ページの更新に手間と時間がかかる<br>
+    <br>
+    <span style="background: linear-gradient(transparent 50%, #83d1f2 0%);">★Htmlの基本用語★</span><br>
+    ①タグ<br>
+    Htmlの記述に意味を与える印<br>
+    <img src="./①/b.png"width=25%><br>
+    <br>
+    ＜代表的なタグ＞<br>
+    <ul><li>＜h1＞＜h2＞＜h3＞…　見出し（数字が大きくなるほど字の大きさは小さくなる）</li>
+    <li>＜br＞…　改行</li>
+    <li>＜img＞…　画像</li>
+    <li>＜a＞…　リンク</li></ul>
+    もっと詳しく知りたい方はこちらをクリック！→<a href="https://service.biztex.co.jp/dx-hacker/it-dx-column/htmltag/"target="_blank">【初心者向け】よく使うHTMLタグ一覧!</a><br>
+    <br>
+    ②要素<br>
+    Webを構成するテキスト情報のかたまりを指す用語<br>
+    <img src="./①/c.png"width=25%><br>
+    <br>
+    ③属性<br>
+    個々のタグに特定の性質や動作を与える記述<br>
+    <img src="./①/d.png"width=25%><br>
+    <br>
+    <h3 class="heading-36">☆Htmlの実践☆<br></h3>
+    <span style="background: linear-gradient(transparent 50%, #83d1f2 0%);">1.見出し</span><br>
+    <h1>みなとみらい</h1><br>
+    これを表示するには、<span style="background: linear-gradient(transparent 50%, #f9eb66 0%);">＜h1＞デザイン演習 第1回＜h1＞</span>と入力する。<br>
+    <br>
+    <span style="background: linear-gradient(transparent 50%, #83d1f2 0%);">2.画像</span><br>
+    <img src="./①/e.png"width=25%><br>
+    これを表示するには、<span style="background: linear-gradient(transparent 50%, #f9eb66 0%);">＜img src="./①/e.png"width=25%＞</span>と入力する。<br>
+    ①は写真が入ってるファイル名、e.pngは画像名、widthは画像の幅調整<br>
+    <br>
+    <span style="background: linear-gradient(transparent 50%, #83d1f2 0%);">3.リンク</span><br>
+    <a href="https://www.kanagawa-u.ac.jp/"target="_blank">神奈川大学HP</a><br>
+    これを表示するには、<span style="background: linear-gradient(transparent 50%, #f9eb66 0%);">＜a href="https://www.kanagawa-u.ac.jp/"target="_blank">神奈川大学HP＜/a＞</span>と入力する。<br>
+    リンクを張り付けた後ろにtarget=_blankを入れると別のタブで開くことができる。<br>
+    <br>
+    【参考サイト】<br>
+    <a href="https://service.biztex.co.jp/dx-hacker/it-dx-column/htmltag/"target="_blank">【初心者向け】よく使うHTMLタグ一覧!</a><br>
+    <a href="https://schoo.jp/matome/article/1635"target="=_blank">HTMLとは？初心者向けに基礎知識を分かりやすく解説</a><br>
+    <a href="https://www.toyo-grp.co.jp/column/column-6371/"target="_blank">HTMLとは？基本や簡単なHTMLタグをわかりやすく解説</a><br>
+    </div>
+    
+</body>
+</html>
