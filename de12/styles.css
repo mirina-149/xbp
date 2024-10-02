@@ -34,7 +34,7 @@
         display: inline-block;
         position: relative;
         padding: .5em 1em;
-        border-right: 27px solid #2589d0;
+        border-right: 27px solid #d025b4;
         background-color: #f5f5f5;
         color: #333333;
     }
@@ -78,5 +78,31 @@
         right: 0;
         border-bottom: 3px solid #2589d0;
         border-right: 3px solid #2589d0;
+    }
+    
+    .tape {
+        position: relative;
+        max-width: 400px;
+        margin: 1.5em auto;
+        padding: 2.5em 1.5em 1.5em;
+        box-shadow: 0 2px 3px rgb(0 0 0 / 20%);
+        background-color: #ffe0fd;
+        color: #333333;
+    }
+    
+    .tape span {
+        position: absolute;
+        top: -15px;
+        transform: translateX(-.3em) rotate(-5deg);
+        padding: .5em 2em;
+        border-right: 2px dotted rgb(0 0 0 / 10%);
+        border-left: 2px dotted rgb(0 0 0 / 10%);
+        box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+        background-color: rgb(255 255 255 / 40%);
+        font-weight: 600;
+    }
+    
+    .tape p {
+        margin: 0;
     }
     
