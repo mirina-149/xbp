@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第5回</title>
+    <link rel="stylesheet" href="base.css">
+    </head>
+    <body>
+        
+        <div class="graph"><h2 class="heading-15">プログラミング</h2><br>
+            <div style="text-align: center;">
+            天気と気温に合わせて、おすすめの休日プランを提案してくれるプログラムを作りました！<br>
+            その場所の天気情報がわからなくてもこれを使えば天気だけでなくプランまで教えてくれるので休日にを有意義に過ごすことができます！<br>
+            <br>
+            天気情報の取得は<a href="https://openweathermap.org/"target=_blank>Openweathermap</a>を登録して作成しました。<br>
+            <br>
+            Openweathermapの登録の仕方はこちら↓<br>
+            <a href="https://auto-worker.com/blog/?p=1612"target=_blank>世界の天気API「OpenWeatherMap」の無料APIキー発行・取得、リクエスト方法</a><br>
+            <br>
+            ソースコードの作成はこちらを参考にしました↓<br>
+            <a href="https://note.com/kdtakagi/n/n296efc3bd82c"target=_blamk>Pythonで気象情報データを取得する簡単な方法:初心者向けブログ記事</a><br>
+            <a href="https://miyayui.github.io/xbp/de12/5.html"target=_blank>XBPの先輩 miyayuiさんの課題</a>
+
+        </div>
+        
+            <code>
+                <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+                <li style="background-color:#EFF;">import requests</li>
+                <li style="background-color:#EEF;">API_KEY=<font style="color:brown;">"814ae22dc8dee21099aeb27cb9525f64"</font></li>
+                <li style="background-color:#EFF;"># 入手した自分のAPIを入力する</li>
+                <li style="background-color:#EEF;">BASE_URL = <font style="color:brown;">'http://api.openweathermap.org/data/2.5/weather'</font></li>
+                <li style="background-color:#EFF;"># ユーザーから都市名を入力してもらう</li>
+                <li style="background-color:#EEF;">city_name = input(<font style="color:brown;">"都市名を英語で入力してね"</font>)</li>
+                <li style="background-color:#EFF;"># 日本語で入力するとエラーになる</li>
+                <li style="background-color:#EEF;">city = city_name</li>
+                <li style="background-color:#EFF;">request_url = f<font style="color:brown;">' {BASE_URL}?q={city}&amp;appid={API_KEY}'</font></li>
+                <li style="background-color:#EEF;">response = requests.get (request_url)</li>
+                <li style="background-color:#EFF;">if response.status_code == 200:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;data = response. json()</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;weather = data[<font style="color:brown;">'weather'</font>][0][<font style="color:brown;">'description'</font>]</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;temperature = round (data[ <font style="color:brown;">'main'</font> ][<font style="color:brown;">'temp'</font>] - 273.15, 2)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print(f<font style="color:brown;">'Weather: {weather}'</font>)</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;# 天気の表示</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print(f<font style="color:brown;">' Temperature: {temperature}℃'</font>)</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;# 気温の表示</li>
+                <li style="background-color:#EFF;"></li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;if weather == <font style="color:brown;">"clear sky"</font> and temperature&gt;30:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"プールや川で水遊び！熱中症には気を付けて！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"few clouds"</font>and temperature&gt;30:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"ひまわり畑や大自然の景色を眺めに行ってみるといいね"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"scattered clouds"</font>and temperature&gt;30:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"アイスやかき氷を食べに行ってみよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"broken clouds"</font>and temperature&gt;30:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"浴衣を着て食べ歩きが楽しそう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"light rain"</font>and temperature&gt;30:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"流しそうめんで夏を感じよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"rain"</font>and temperature&gt;30:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"水族館でゆったり過ごしてみるとよさそう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"thunderstorm"</font>and temperature&gt;30:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"外は危ないから家の中でゲームや本を読んでゆっくりしよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"mist"</font>and temperature&gt;30:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"なるべく外に出ないようにしよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# ↑気温が高い真夏日を想定したプラン</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather == <font style="color:brown;">"clear sky"</font> and 31&gt;temperature&gt;20:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"自然を感じられる旅行に行ってみよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"few clouds"</font>and 31&gt;temperature&gt;20:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"遊園地に行って楽しもう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"scattered clouds"</font>and 31&gt;temperature&gt;20:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"カフェ巡りで心を癒そう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"broken clouds"</font>and 31&gt;temperature&gt;20:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"ドライブ旅行で行ったことのない場所に行ってみよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"shower rain"</font>and 31&gt;temperature&gt;20:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"室内アスレチックで体を動かしてリフレッシュしよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"light rain"</font>and 31&gt;temperature&gt;20:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"室内アスレチックで体を動かしてリフレッシュしよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"rain"</font>and 31&gt;temperature&gt;20:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"ショッピングで破産するまで買いまくれ！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"thunderstorm"</font>and 31&gt;temperature&gt;20:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"外は危ないから家の中でゲームや本を読んでゆっくりしよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"mist"</font>and 31&gt;temperature&gt;20:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"なるべく外に出ないようにしよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# ↑夏やまだ暖かい秋を想定したプラン</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather == <font style="color:brown;">"clear sky"</font> and 21&gt;temperature&gt;12:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"季節を感じられるスポットに行ってみよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"few clouds"</font>and 21&gt;temperature&gt;12:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"景色のいい公園でお散歩してみよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"scattered clouds"</font>and 21&gt;temperature&gt;12:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"食べ歩きに行ってお腹いっぱいになるまで食べまくろう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"broken clouds"</font>and 21&gt;temperature&gt;12:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"おしゃれなごはん屋さんに行って幸せを感じよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"shower rain"</font>and 21&gt;temperature&gt;12:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"室内で楽しめるおしゃれスポットに行って写真をいっぱい撮ろう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"light rain"</font>and 21&gt;temperature&gt;12:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"室内で楽しめるおしゃれスポットに行って写真をいっぱい撮ろう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"rain"</font>and 21&gt;temperature&gt;12:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"カラオケやボーリングで楽しい時間を過ごそう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"thunderstorm"</font>and 21&gt;temperature&gt;12:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"外は危ないから家の中でゲームや本を読んでゆっくりしよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"mist"</font>and 21&gt;temperature&gt;12:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"なるべく外に出ないようにしよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# ↑春、秋、冬を想定したプラン</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather == <font style="color:brown;">"clear sky"</font> and 13&gt;temperature:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"朝日や夕日を見に行こう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"few clouds"</font>and 13&gt;temperature:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"イルミネーションを見に行こう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"scattered clouds"</font>and 13&gt;temperature:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"温泉巡りで体を温めよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"broken clouds"</font>and 13&gt;temperature:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"映画を見てゆっくりしよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"shower rain"</font>and 13&gt;temperature:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"体が温まるおいしいごはんを食べに行こう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"light rain"</font>and 13&gt;temperature:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"体が温まるおいしいごはんを食べに行こう！"</font>)            </li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"rain"</font>and 13&gt;temperature:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"おうちでパーティーをしよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"thunderstorm"</font>and 13&gt;temperature:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"外は危ないから家の中でゲームや本を読んでゆっくりしよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif weather==<font style="color:brown;">"mist"</font>and 13&gt;temperature:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"なるべく外に出ないようにしよう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">"雪遊びで体を動かそう！"</font>)</li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# ↑冬を想定したプラン</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li style="background-color:#EFF;">else:</li>
+                <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print(<font style="color:brown;">'天気情報を取得できませんでした'</font>)</li>
+                <li style="background-color:#EFF;"># 日本語やスペルミスだと表示される</li>
+                </ol></code>
+
+                <div style="text-align: center;">
+                    </div>
+        
+        
+       
+    
+    </div>
+    
+    </body>
+    </html>
+   
